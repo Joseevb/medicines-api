@@ -6,6 +6,8 @@ import { db } from "./db";
 // Import CSV if needed (run once)
 const shouldImport = process.argv.includes("--import");
 
+const PORT = Number(process.env.PORT) || 4000;
+
 if (shouldImport) {
 	const csvFile =
 		process.argv[process.argv.indexOf("--import") + 1] || "medicines.csv";
@@ -14,12 +16,12 @@ if (shouldImport) {
 	Effect.runPromise(importCSV(db, csvFile))
 		.then((result) => {
 			console.log("Import completed:", result);
-			startServer(db);
+			startServer(db, PORT);
 		})
 		.catch((error) => {
 			console.error("Import failed:", error);
 			process.exit(1);
 		});
 } else {
-	startServer(db);
+	startServer(db, PORT);
 }
