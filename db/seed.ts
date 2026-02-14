@@ -4,6 +4,7 @@ import Bun from "bun";
 import { parse } from "csv-parse/sync";
 
 import { Effect, Console } from "effect";
+import { db } from ".";
 
 // Define error types
 class CSVReadError {
@@ -213,3 +214,11 @@ export const importCSV = (db: BunSQLiteDatabase, filename: string) =>
 
 		return result;
 	});
+
+const csvFile = process.env.CSV_FILE || "./data/medicines.csv";
+console.log(`Importing from ${csvFile}...`);
+
+Effect.runPromise(importCSV(db, csvFile)).catch((error) => {
+	console.error("Import failed:", error);
+	process.exit(1);
+});
