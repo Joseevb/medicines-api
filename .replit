@@ -34,5 +34,6 @@ localPort = 5000
 externalPort = 80
 
 [deployment]
-deploymentTarget = "autoscale"
-run = ["bun", "run", "index.ts"]
+deploymentTarget = "cloudrun"
+run = ["sh", "-c", "bun start"]
+build = ["sh", "-c", "bun run build"]
