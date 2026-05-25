@@ -1,6 +1,7 @@
-import { startServer } from "./server";
-import { db } from "./db";
+import 'dotenv/config'
+import { db } from './db'
+import { startServer } from './server'
 
-const PORT = Number(process.env.PORT) || 4000;
+const PORT = Number(process.env.PORT) || 4000
 
-startServer(db, PORT);
+startServer(db, PORT)
