@@ -4,7 +4,7 @@
   "type": "module",
   "module": "index.ts",
   "scripts": {
-    "build": "rm $(DB_FILE_NAME) && bun x --bun drizzle-kit generate && bun run db:migrate && bun run ./db/seed.ts",
+    "build": "rm mydb.sqlite && bun x --bun drizzle-kit generate && bun run db:migrate && bun run ./db/seed.ts",
     "db:migrate": "bun run ./db/migrate.ts",
     "fmt": "oxfmt",
     "lint": "oxlint",
